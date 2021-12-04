@@ -47,8 +47,8 @@ class Counter extends Component {
             <CounterButton by={1} incrementMethod={this.increment} decrementMethod={this.decrement}></CounterButton>
             <CounterButton by={5} incrementMethod={this.increment} decrementMethod={this.decrement}></CounterButton>
             <CounterButton by={10} incrementMethod={this.increment} decrementMethod={this.decrement}></CounterButton>            
+            <span className="count">{this.state.counter}</span>
             <ResetButton resetMethod={this.reset}/>
-            <span className="count">{this.state.counter}</span>        
           </div>
           
         );

@@ -11,7 +11,7 @@ class CounterButton extends Component {
     render () {        
         return (
             <div className="counter">   
-            {// incrementMethod is passed as a property from the parent - Counter}             
+            {/* incrementMethod is passed as a property from the parent - Counter*/}             
                 <button onClick={() => this.props.incrementMethod(this.props.by)}>+{this.props.by}</button>
                 <button onClick={() => this.props.decrementMethod(this.props.by)}>-{this.props.by}</button>
             </div>

@@ -6,28 +6,16 @@ class ResetButton extends Component {
 
     constructor() {
         super();
-        this.state = {
-            counter : 0
-        };
-
-        this.reset = this.reset.bind(this);
+        
     };
 
     render() {
         return ( 
             <div className="reset">
-                <button onClick={this.reset}>Reset</button>
+                <button onClick={() => this.props.resetMethod()}>Reset</button>
             </div>
         );
     };
-
-    reset() {
-        this.setState({
-            counter : 0
-        });
-
-        this.props.resetMethod();
-    }
 }
 
 export default ResetButton;

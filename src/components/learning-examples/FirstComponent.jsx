@@ -6,6 +6,7 @@ export default class FirstComponent extends Component {
         <div className="firstComponent">
           My First Component
         </div>
+        
       );
    }
 }

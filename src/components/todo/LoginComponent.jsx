@@ -27,6 +27,7 @@ class LoginComponent extends Component {
         // advantage of this is the ability to pass the value to other UI elements
         this.setState(
             {
+                // now event.target.name is the name field - this must match the name of the state field
                 [event.target.name] : event.target.value
             }
         )

@@ -12,6 +12,7 @@ class ResetButton extends Component {
     render() {
         return ( 
             <div className="reset">
+                {/*resetMethod must be called on click - resetMethod() */}
                 <button onClick={() => this.props.resetMethod()}>Reset</button>
             </div>
         );

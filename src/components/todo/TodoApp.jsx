@@ -4,6 +4,8 @@ import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 import WelcomeComponent from './WelcomeComponent';
 import ErrorComponent from './ErrorComponent';
 import ListTodosComponent from './ListTodosComponent';
+import HeaderComponent from './HeaderComponent';
+import FooterComponent from './FooterComponent';
 
 
 class TodoApp extends Component {
@@ -12,6 +14,7 @@ class TodoApp extends Component {
             <div className="TodoApp">
                 <Router>
                     <>
+                    <HeaderComponent/>
                         <Switch>
                             <Route path="/" exact component={LoginComponent}/>
                             <Route path="/login" component={LoginComponent}/>
@@ -19,6 +22,7 @@ class TodoApp extends Component {
                             <Route path="/todos" component={ListTodosComponent}/>
                             <Route component={ErrorComponent}/>
                         </Switch>
+                        <FooterComponent/>
                     </>
                 </Router>
             </div>

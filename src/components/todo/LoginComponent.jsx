@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {withRouter} from 'react-router-dom'
 
 class LoginComponent extends Component {
 
@@ -29,9 +30,10 @@ class LoginComponent extends Component {
 
     
     loginClicked(event) {
-        if(this.state.username==='theo' && this.state.password==='dummy') {
-            this.setState({showSuccessMessage: true})
-            this.setState({hasLoginFailed: false})
+        if(this.state.username==='theo' && this.state.password==='dummy') {            
+            this.props.history.push("/welcome")
+            //this.setState({showSuccessMessage: true})
+            //this.setState({hasLoginFailed: false})
         } else {
             this.setState({showSuccessMessage: false})
             this.setState({hasLoginFailed: true})
@@ -50,4 +52,4 @@ class LoginComponent extends Component {
     }
 }
 
-export default LoginComponent;
+export default withRouter(LoginComponent);

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 class WelcomeComponent extends Component {
     render() {
-        return <div>Welcome todo</div>
+        return <div>Welcome {this.props.match.params.name}</div>
     }
 }
 

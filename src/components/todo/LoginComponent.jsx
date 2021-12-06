@@ -17,13 +17,16 @@ class LoginComponent extends Component {
 
     render() { 
         return (
-            <div>               
-                {/*JSX evaluates the first condition - if true returns the second part of the expression*/}
-                {this.state.hasLoginFailed && <div>Invalid Credentials</div>}
-                {this.state.showSuccessMessage && <div>Successful login</div>}
-                User Name: <input type="text" name="username" value={this.state.username} onChange={this.handleChange}/>
-                Password: <input type="password" name="password" value={this.state.password} onChange = {this.handleChange}/>
-                <button onClick={this.loginClicked}>Login</button>
+            <div>
+                <h1>Login</h1>               
+                    <div className="countainer">
+                        {/*JSX evaluates the first condition - if true returns the second part of the expression*/}
+                        {this.state.hasLoginFailed && <div className="alert alert-warning">Invalid Credentials</div>}
+                        {this.state.showSuccessMessage && <div>Successful login</div>}
+                        User Name: <input type="text" name="username" value={this.state.username} onChange={this.handleChange}/>
+                        Password: <input type="password" name="password" value={this.state.password} onChange = {this.handleChange}/>
+                        <button className="btn btn=success" onClick={this.loginClicked}>Login</button>
+                    </div>
             </div>
         )
     }

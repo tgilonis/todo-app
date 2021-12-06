@@ -6,6 +6,7 @@ import ErrorComponent from './ErrorComponent';
 import ListTodosComponent from './ListTodosComponent';
 import HeaderComponent from './HeaderComponent';
 import FooterComponent from './FooterComponent';
+import LogoutComponent from './LogoutComponent';
 
 
 class TodoApp extends Component {
@@ -20,6 +21,7 @@ class TodoApp extends Component {
                             <Route path="/login" component={LoginComponent}/>
                             <Route path="/welcome/:name" component={WelcomeComponent}/>
                             <Route path="/todos" component={ListTodosComponent}/>
+                            <Route path="/logout" component={LogoutComponent}/>
                             <Route component={ErrorComponent}/>
                         </Switch>
                         <FooterComponent/>

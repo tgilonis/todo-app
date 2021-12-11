@@ -8,6 +8,7 @@ class WelcomeComponent extends Component {
         super(props)
         this.retrieveWelcomeMessage = this.retrieveWelcomeMessage.bind(this)
         this.handleSuccessfulResponse = this.handleSuccessfulResponse.bind(this)
+        this.handleErrorResponse = this.handleErrorResponse.bind(this)
         this.state = {
             welcomeMessage : ''
         }
@@ -22,7 +23,7 @@ class WelcomeComponent extends Component {
                     You can manage your todos <Link to="/todos">here</Link>.
                 </div>
                 <div className="container">
-                    Click here to get a customized welcom message.
+                    Click here to get a customized welcome message.
                     <button onClick={this.retrieveWelcomeMessage} 
                     className="btn btn-success">Get Welcome Message</button>
                 </div>
@@ -40,7 +41,7 @@ class WelcomeComponent extends Component {
         HelloWorldService.executeHelloWorldBeanPathVariableService(this.props.match.params.name)
         .then(response => this.handleSuccessfulResponse(response))
         //.then(response => console.log(response.data.message))
-        .catch(console.log("Failure"))
+        .catch(error => this.handleErrorResponse(error))
 
         // HelloWorldService.executeHelloWorldBeanService()
         // .then(response => this.handleSuccessfulResponse(response))
@@ -49,6 +50,10 @@ class WelcomeComponent extends Component {
 
     handleSuccessfulResponse(response) {
         this.setState({welcomeMessage : response.data.message})
+    }
+
+    handleErrorResponse(error) {
+        this.setState({welcomeMessage : error.response.data.message});
     }
 }
 

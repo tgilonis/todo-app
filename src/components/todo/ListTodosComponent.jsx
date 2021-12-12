@@ -11,6 +11,7 @@ class ListTodosComponent extends Component {
             message: null
         }
         this.deleteTodoClicked = this.deleteTodoClicked.bind(this)
+        this.updateTodoClicked = this.updateTodoClicked.bind(this)
         this.refreshTodos = this.refreshTodos.bind(this)
     }     
 
@@ -29,13 +30,27 @@ class ListTodosComponent extends Component {
 
     deleteTodoClicked(id) {
         let username = AuthenticationService.getLoggedInUserName()
-        //console.log(`${username} ${id}`)
+        //console.log(`Delete ${username} ${id}`)
         TodoDataService.deleteTodo(username, id)
         .then(response => {
             this.setState({message : `Delete of Todo ${id} successful.`})
             this.refreshTodos()
         })
     }
+
+    updateTodoClicked(id) {
+        let username = AuthenticationService.getLoggedInUserName()
+        console.log(`Update ${username} ${id}`)
+        this.props.history.push(`/todos/${id}`)
+        // let username = AuthenticationService.getLoggedInUserName()
+        // //console.log(`${username} ${id}`)
+        // TodoDataService.deleteTodo(username, id)
+        // .then(response => {
+        //     this.setState({message : `Delete of Todo ${id} successful.`})
+        //     this.refreshTodos()
+        // })
+    }
+
 
     render() {
         return (
@@ -62,6 +77,7 @@ class ListTodosComponent extends Component {
                                         <td>{todo.description}</td>
                                         <td>{todo.done.toString()}</td>
                                         <td>{todo.targetDate}</td>
+                                        <td><button className="btn btn-success" onClick={() => this.updateTodoClicked(todo.id)}>Update</button></td>
                                         <td><button className="btn btn-warning" onClick={() => this.deleteTodoClicked(todo.id)}>Delete</button></td>
                                     </tr>
                                 )                        

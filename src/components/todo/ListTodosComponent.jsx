@@ -13,6 +13,7 @@ class ListTodosComponent extends Component {
         }
         this.deleteTodoClicked = this.deleteTodoClicked.bind(this)
         this.updateTodoClicked = this.updateTodoClicked.bind(this)
+        this.addTodoClicked = this.addTodoClicked.bind(this)
         this.refreshTodos = this.refreshTodos.bind(this)
     }     
 
@@ -43,13 +44,10 @@ class ListTodosComponent extends Component {
         let username = AuthenticationService.getLoggedInUserName()
         console.log(`Update ${username} ${id}`)
         this.props.history.push(`/todos/${id}`)
-        // let username = AuthenticationService.getLoggedInUserName()
-        // //console.log(`${username} ${id}`)
-        // TodoDataService.deleteTodo(username, id)
-        // .then(response => {
-        //     this.setState({message : `Delete of Todo ${id} successful.`})
-        //     this.refreshTodos()
-        // })
+    }
+
+    addTodoClicked() {
+        this.props.history.push(`/todos/-1`)
     }
 
 
@@ -86,6 +84,9 @@ class ListTodosComponent extends Component {
                             }
                         </tbody>
                     </table>
+                    <div className="row">
+                            <button className = "btn btn-success" onClick={this.addTodoClicked}>Add</button>
+                    </div>
                 </div>
             </div>
         )

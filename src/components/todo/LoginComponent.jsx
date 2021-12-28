@@ -34,13 +34,22 @@ class LoginComponent extends Component {
 
     
     loginClicked(event) {
-        if(this.state.username==='theo' && this.state.password==='dummy') { 
-            AuthenticationService.registerSuccessfulLogin(this.state.username, this.state.password)           
-            this.props.history.push(`/welcome/${this.state.username}`)            
-        } else {
-            this.setState({showSuccessMessage: false})
-            this.setState({hasLoginFailed: true})
-        }
+        // if(this.state.username==='theo' && this.state.password==='dummy') { 
+        //     AuthenticationService.registerSuccessfulLogin(this.state.username, this.state.password)           
+        //     this.props.history.push(`/welcome/${this.state.username}`)            
+        // } else {
+        //     this.setState({showSuccessMessage: false})
+        //     this.setState({hasLoginFailed: true})
+        // }
+        AuthenticationService
+            .executeBasicAuthenticationService(this.state.username, this.state.password)
+            .then(() => {
+                    AuthenticationService.registerSuccessfulLogin(this.state.username, this.state.password)           
+                    this.props.history.push(`/welcome/${this.state.username}`)
+                }).catch(() => {
+                    this.setState({showSuccessMessage: false})
+                    this.setState({hasLoginFailed: true})
+                })
     }
 
     handleChange(event) {
@@ -53,6 +62,8 @@ class LoginComponent extends Component {
             }
         )
     }
+
+    
 }
 
 export default withRouter(LoginComponent);

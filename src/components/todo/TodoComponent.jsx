@@ -19,7 +19,7 @@ class TodoComponent extends Component {
 
     onSubmit(values) {
 
-        let username = AuthenticationService.getLoggedInUserName
+        let username = AuthenticationService.getLoggedInUserName()
 
         let todo = {
             id: this.state.id,

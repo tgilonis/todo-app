@@ -2,9 +2,23 @@ import axios from 'axios'
 
 class AuthenticationService {
 
+
+
     executeBasicAuthenticationService(username, password) {
         return axios.get('http://localhost:8080/basicauth', 
             { headers : { authorization : this.createBasicAuthToken(username, password) } } )
+    }
+
+    executeJwtAuthenticationService(username, password) {
+        return axios.post('http://localhost:8080/authenticate', {
+            username,
+            password
+        })            
+    }
+
+    registerSuccessfulLoginForJwt(username, token) {
+        sessionStorage.setItem('authenticatedUser', username)
+        this.setupAxiosInterceptors(this.createJWTToken(token))
     }
 
     registerSuccessfulLogin(username,password) {
@@ -15,6 +29,10 @@ class AuthenticationService {
 
     createBasicAuthToken(username, password) {
         return 'Basic ' + window.btoa(username + ":" + password)
+    }
+
+    createJWTToken(token) {
+        return 'Bearer ' + token
     }
 
     logout() {
@@ -37,12 +55,12 @@ class AuthenticationService {
         return user
     }
 
-    setupAxiosInterceptors(basicAuthHeader) {       
+    setupAxiosInterceptors(token) {       
 
         axios.interceptors.request.use(
             (config) => {
                 if(this.isUserLoggedIn()) {
-                    config.headers.authorization = basicAuthHeader
+                    config.headers.authorization = token
                 }
                 return config
             }

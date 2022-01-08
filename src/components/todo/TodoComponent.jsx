@@ -63,7 +63,7 @@ class TodoComponent extends Component {
             return
         }
 
-        let username = AuthenticationService.getLoggedInUserName
+        let username = AuthenticationService.getLoggedInUserName()
         TodoDataService.retrieveTodo(username, this.state.id)
         .then(response => {
             this.setState({
